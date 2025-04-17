@@ -3,7 +3,6 @@ package model;
 public class FormulaireRestaurant extends Formulaire{
 	int nbPersonne;
 	int numService;
-	int numTable;
 	
 	public FormulaireRestaurant(int jour,
 			int mois, 
@@ -12,14 +11,6 @@ public class FormulaireRestaurant extends Formulaire{
 		super(jour,mois);
 		this.nbPersonne = nombrePersonne;
 		this.numService = numeroService;
-	}
-	
-	public int getNumeroTable() {
-		return numTable;
-	}
-	
-	public void setNumeroTable(int numTable) {
-		this.numTable = numTable;
 	}
 	
 	public int getNumService() {

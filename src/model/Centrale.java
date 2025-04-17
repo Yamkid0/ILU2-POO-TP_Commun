@@ -1,10 +1,10 @@
 package model;
 
-public class Centrale<T extends EntiteReservable<Formulaire>> {
-	EntiteReservable[] entites;
+public class Centrale<T extends EntiteReservable<Formulaire>, F extends Formulaire> {
+	T[] entites;
 	int nbEntites = 0;
 	
-	public Centrale(EntiteReservable[] entites) {
+	public Centrale(T[] entites) {
 		this.entites = entites;
 	}
 	
@@ -12,7 +12,7 @@ public class Centrale<T extends EntiteReservable<Formulaire>> {
 		entites[nbEntites++] = entite;
 	}
 	
-	public int[] donnerPossibilites(Formulaire formulaire) {
+	public int[] donnerPossibilites(F formulaire) {
 		int[] possibilites = new int[nbEntites];
 		for(int i = 0; i < nbEntites; i++) {
 			if(entites[i].compatible(formulaire)) {
@@ -24,8 +24,10 @@ public class Centrale<T extends EntiteReservable<Formulaire>> {
 		return possibilites;
 	}
 	
-	public void reserver(int numeroEntite, Formulaire formulaire) {
-		T entite = (T) entites[numeroEntite-1];
-		return .reserver(formulaire)
+	public Reservation reserver(int numeroEntite, F formulaire) {
+		T entite = entites[numeroEntite-1];
+		formulaire.setIdentificationEntite(entite.getNumero());
+		System.out.println("Entt num " + entite.getNumero());
+		return entite.reserver(formulaire);
 	}
 }
